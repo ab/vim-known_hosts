@@ -25,8 +25,9 @@ endif
 syn case ignore
 
 syn keyword knownHostsKeyword ssh-rsa ssh-dsa ssh-dss ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 ssh-ed25519
-syn match   knownHostsHost    "^[^ ]\+" 
+syn match   knownHostsHost    "^[^ ]\+"
 syn match   knownHostsKey     "[^ ]\+$"
+syn match   knownHostsComment "^#.*$"
 
 " Define the default highlighting
 if version >= 508 || !exists("did_known_hosts_syntax_inits")
@@ -38,8 +39,10 @@ if version >= 508 || !exists("did_known_hosts_syntax_inits")
     endif
 
     HiLink knownHostsKeyword Keyword
-    HiLink knownHostsHost    Identifier
+    " HiLink knownHostsHost    Identifier
+    HiLink knownHostsHost    Type " green
     HiLink knownHostsKey     String
+    HiLink knownHostsComment Comment
 
     delcommand HiLink
 endif
